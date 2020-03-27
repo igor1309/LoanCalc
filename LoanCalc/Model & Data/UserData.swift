@@ -28,7 +28,7 @@ final class UserData: ObservableObject {
 
 func loadLoan() -> Loan {
     guard let loan: Loan = loadJSONFromDocDir("loan.json") else {
-        return Loan(principal: 1_000_000, rate: 7.75 / 100, term: 120)
+        return Loan(principal: 6_000_000, rate: 7.75 / 100, term: 240, type: .decliningBalance)
     }
     return loan
 }

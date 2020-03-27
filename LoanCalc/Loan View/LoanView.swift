@@ -9,6 +9,16 @@
 import SwiftUI
 import SwiftPI
 
+extension VerticalAlignment {
+    enum Custom: AlignmentID {
+        static func defaultValue(in context: ViewDimensions) -> CGFloat {
+            context[VerticalAlignment.top]
+        }
+    }
+    
+    static let custom = VerticalAlignment(Custom.self)
+}
+
 struct LoanView: View {
     @EnvironmentObject var userData: UserData
     @State private var isFavorite = false
@@ -21,89 +31,90 @@ struct LoanView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text("Кредит")
-                    .font(.largeTitle)
-                    .bold()
-                
-                Spacer()
-                
-                Button(action: toggleFavorite) {
-                    Image(systemName: isFavorite ? "star.fill" : "star")
-                        .foregroundColor(.systemOrange)
-                        .imageScale(.large)
-                }
-            }
-            .padding()
-            
-            CardView(backgroundColor: .secondarySystemBackground, cornerRadius: 8) {
-                VStack(spacing: 16) {
-                    VStack(spacing: 0) {
-                        Text(123456.formattedGrouped)
-                            .font(.largeTitle)
-                        
-                        Text("ежемесячный платеж".uppercased())
-                            .font(.footnote)
-                    }
-                    .foregroundColor(.systemOrange)
-                    
-                    VStack(spacing: 6) {
-                        HStack(alignment: .firstTextBaseline) {
-                            Text("Проценты, всего".uppercased())
-                                .font(.caption)
-                            
-                            Spacer()
-                            
-                            Text(98765.formattedGrouped)
-                                .font(.subheadline)
-                        }
-                        
-                        HStack(alignment: .firstTextBaseline) {
-                            Text("Кредит и проценты, всего".uppercased())
-                                .font(.caption)
-                            
-                            Spacer()
-                            
-                            Text(987654.formattedGrouped)
-                                .font(.subheadline)
-                        }
-                    }
-                    .foregroundColor(.systemTeal)
-                }
-            }
-            .padding()
-            
-            CardView(backgroundColor: .secondarySystemBackground, cornerRadius: 8) {
-                VStack(spacing: 32) {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(alignment: .leading) {
+                CardView(backgroundColor: .secondarySystemBackground, cornerRadius: 16) {
                     VStack(spacing: 16) {
-                        Text("измените параметры для расчета кредита")
-                            .foregroundColor(.secondary)
-                            .font(.footnote)
+                        HStack(alignment: .custom) {
+                            VStack(spacing: 0) {
+                                Text(userData.loan.monthlyPaymentStr)
+                                    .font(.largeTitle)
+                                    .alignmentGuide(.custom) { d in d[VerticalAlignment.top] }
+                                
+                                Text("ежемесячный платеж".uppercased())
+                                    .font(.footnote)
+                            }
+                            .foregroundColor(.systemOrange)
+                            .frame(maxWidth: .infinity)
+                            
+                            Spacer()
+                            
+                            Button(action: toggleFavorite) {
+                                Image(systemName: isFavorite ? "star.fill" : "star")
+                                    .foregroundColor(.systemOrange)
+//                                    .imageScale(.large)
+                            }
+                            .alignmentGuide(.custom) { d in d[VerticalAlignment.top] }
+                        }
                         
-                        Picker(selection: .constant(Loan.InterestType.decliningBalance), label: Text("Тип выплаты")) {
-                            ForEach(Loan.InterestType.allCases, id: \.self) { type in
-                                Text(type.id).tag(type)
+                        VStack(spacing: 6) {
+                            HStack(alignment: .firstTextBaseline) {
+                                Text("Проценты, всего".uppercased())
+                                    .font(.caption)
+                                
+                                Spacer()
+                                
+                                Text(userData.loan.totalInterestStr)
+                                    .font(.subheadline)
+                            }
+                            
+                            HStack(alignment: .firstTextBaseline) {
+                                Text("Кредит и проценты, всего".uppercased())
+                                    .font(.caption)
+                                    .lineLimit(nil)
+                                
+                                Spacer()
+                                
+                                Text(userData.loan.totalPaymentsStr)
+                                    .font(.subheadline)
                             }
                         }
-                        .labelsHidden()
-                        .pickerStyle(SegmentedPickerStyle())
+                        .foregroundColor(.systemTeal)
                     }
-                    
-                    LoanParameterRow(amount: $userData.loan.principal,
-                                     name: "сумма кредита",
-                                     isPercentage: false)
-                    LoanParameterRow(amount: $userData.loan.rate,
-                                     name: "годовая процентная ставка",
-                                     isPercentage: true)
-                    LoanParameterRow(amount: $userData.loan.term,
-                                     name: "срок кредита, месяцев\n(\(userData.loan.termInYears.formattedGroupedWith1Decimal) лет)",
-                        isPercentage: false)
                 }
+                .padding()
+                
+                CardView(backgroundColor: .secondarySystemBackground, cornerRadius: 16) {
+                    VStack(spacing: 32) {
+                        VStack(spacing: 16) {
+                            Text("измените параметры для расчета кредита")
+                                .foregroundColor(.secondary)
+                                .font(.footnote)
+                            
+                            Picker(selection: $userData.loan.type, label: Text("Тип выплаты")) {
+                                ForEach(Loan.InterestType.allCases, id: \.self) { type in
+                                    Text(type.id.uppercased()).tag(type)
+                                }
+                            }
+                            .labelsHidden()
+                            .pickerStyle(SegmentedPickerStyle())
+                        }
+                        
+                        LoanParameterRow(amountStr: userData.loan.principalStr,
+                                         name: "сумма кредита",
+                                         param: .principal)
+                        LoanParameterRow(amountStr: userData.loan.rateStr,
+                                         name: "годовая процентная ставка",
+                                         param: .rate)
+                        LoanParameterRow(amountStr: userData.loan.termStr,
+                                         name: "срок кредита, месяцев\n(\(userData.loan.termInYearsStr) лет)",
+                            param: .term)
+                    }
+                }
+                .padding()
+                
+                Spacer()
             }
-            .padding()
-            
-            Spacer()
         }
     }
     

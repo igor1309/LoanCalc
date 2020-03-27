@@ -7,11 +7,24 @@
 //
 
 import SwiftUI
+import SwiftPI
+
+struct LoanParamEditor: View {
+    var param: Loan.LoanParameter
+    
+    var body: some View {
+        Text("editor for \(param.rawValue)")
+    }
+}
 
 struct LoanParameterRow: View {
-    @Binding var amount: Double
+    @EnvironmentObject var userData: UserData
+    
+    var amountStr: String
     var name: String
-    var isPercentage = false
+    var param: Loan.LoanParameter
+    
+    @State private var showEditor = false
     
     var body: some View {
         HStack {
@@ -23,7 +36,7 @@ struct LoanParameterRow: View {
             }
             
             VStack {
-                Text("\(isPercentage ? amount.formattedPercentageWithDecimals : amount.formattedGrouped)")
+                Text(amountStr)
                     .font(.largeTitle)
                 
                 Text(name.uppercased())
@@ -32,6 +45,13 @@ struct LoanParameterRow: View {
                     .multilineTextAlignment(.center)
             }
             .frame(maxWidth: .infinity)
+            .onLongPressGesture {
+                self.showEditor = true
+            }
+            .sheet(isPresented: $showEditor) {
+                LoanParamEditor(param: self.param)
+                    .environmentObject(self.userData)
+            }
             
             Button(action: amountPlus) {
                 Image(systemName: "plus")
@@ -42,21 +62,20 @@ struct LoanParameterRow: View {
         }
     }
     private func amountPlus() {
-        //  MARK: FINISH THIS
-        //
+        userData.loan.increase(param: param)
     }
     
     private func amountMinus() {
-        //  MARK: FINISH THIS
-        //
+        userData.loan.decrease(param: param)
     }
 }
 
 struct LoanParameterRow_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            LoanParameterRow(amount: .constant(0.077), name: "годовая ставка", isPercentage: true)
-            LoanParameterRow(amount: .constant(10_000_000), name: "сумма кредита")
+            LoanParameterRow(amountStr: (0.077).formattedPercentageWithDecimals, name: "годовая ставка", param: .rate)
+            LoanParameterRow(amountStr: 10_000_000.formattedGrouped, name: "сумма кредита", param: .principal)
         }
+        .environmentObject(UserData())
     }
 }
