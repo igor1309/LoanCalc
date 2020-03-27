@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,12 @@
 		2A660816242E182A0056C849 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A660815242E182A0056C849 /* Assets.xcassets */; };
 		2A660819242E182A0056C849 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A660818242E182A0056C849 /* Preview Assets.xcassets */; };
 		2A66081C242E182A0056C849 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A66081A242E182A0056C849 /* LaunchScreen.storyboard */; };
+		2A660824242E18C30056C849 /* Loan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A660823242E18C30056C849 /* Loan.swift */; };
+		2A660828242E19ED0056C849 /* SwiftPI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A660827242E19ED0056C849 /* SwiftPI */; };
+		2A66082A242E1A8A0056C849 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A660829242E1A8A0056C849 /* UserData.swift */; };
+		2A66082C242E24450056C849 /* LoanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66082B242E24450056C849 /* LoanView.swift */; };
+		2A66082F242E29510056C849 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66082E242E29510056C849 /* CardView.swift */; };
+		2AA1D4C5242E326A00B51313 /* LoanParameterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1D4C4242E326A00B51313 /* LoanParameterRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,11 @@
 		2A660818242E182A0056C849 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A66081B242E182A0056C849 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A66081D242E182A0056C849 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A660823242E18C30056C849 /* Loan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loan.swift; sourceTree = "<group>"; };
+		2A660829242E1A8A0056C849 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		2A66082B242E24450056C849 /* LoanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanView.swift; sourceTree = "<group>"; };
+		2A66082E242E29510056C849 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		2AA1D4C4242E326A00B51313 /* LoanParameterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanParameterRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A660828242E19ED0056C849 /* SwiftPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +71,9 @@
 				2A66080F242E18290056C849 /* AppDelegate.swift */,
 				2A660811242E18290056C849 /* SceneDelegate.swift */,
 				2A660813242E18290056C849 /* ContentView.swift */,
+				2A66082D242E24500056C849 /* Loan View */,
+				2A660830242E29560056C849 /* Supporting */,
+				2A660825242E18C80056C849 /* Model & Data */,
 				2A660815242E182A0056C849 /* Assets.xcassets */,
 				2A66081A242E182A0056C849 /* LaunchScreen.storyboard */,
 				2A66081D242E182A0056C849 /* Info.plist */,
@@ -73,6 +88,32 @@
 				2A660818242E182A0056C849 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2A660825242E18C80056C849 /* Model & Data */ = {
+			isa = PBXGroup;
+			children = (
+				2A660823242E18C30056C849 /* Loan.swift */,
+				2A660829242E1A8A0056C849 /* UserData.swift */,
+			);
+			path = "Model & Data";
+			sourceTree = "<group>";
+		};
+		2A66082D242E24500056C849 /* Loan View */ = {
+			isa = PBXGroup;
+			children = (
+				2A66082B242E24450056C849 /* LoanView.swift */,
+				2AA1D4C4242E326A00B51313 /* LoanParameterRow.swift */,
+			);
+			path = "Loan View";
+			sourceTree = "<group>";
+		};
+		2A660830242E29560056C849 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				2A66082E242E29510056C849 /* CardView.swift */,
+			);
+			path = Supporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,6 +132,9 @@
 			dependencies = (
 			);
 			name = LoanCalc;
+			packageProductDependencies = (
+				2A660827242E19ED0056C849 /* SwiftPI */,
+			);
 			productName = LoanCalc;
 			productReference = 2A66080C242E18290056C849 /* LoanCalc.app */;
 			productType = "com.apple.product-type.application";
@@ -119,6 +163,9 @@
 				Base,
 			);
 			mainGroup = 2A660803242E18290056C849;
+			packageReferences = (
+				2A660826242E19ED0056C849 /* XCRemoteSwiftPackageReference "SwiftPI" */,
+			);
 			productRefGroup = 2A66080D242E18290056C849 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -146,9 +193,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A66082F242E29510056C849 /* CardView.swift in Sources */,
 				2A660810242E18290056C849 /* AppDelegate.swift in Sources */,
 				2A660812242E18290056C849 /* SceneDelegate.swift in Sources */,
+				2A66082C242E24450056C849 /* LoanView.swift in Sources */,
+				2AA1D4C5242E326A00B51313 /* LoanParameterRow.swift in Sources */,
 				2A660814242E18290056C849 /* ContentView.swift in Sources */,
+				2A660824242E18C30056C849 /* Loan.swift in Sources */,
+				2A66082A242E1A8A0056C849 /* UserData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +394,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2A660826242E19ED0056C849 /* XCRemoteSwiftPackageReference "SwiftPI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/igor1309/SwiftPI.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2A660827242E19ED0056C849 /* SwiftPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A660826242E19ED0056C849 /* XCRemoteSwiftPackageReference "SwiftPI" */;
+			productName = SwiftPI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2A660804242E18290056C849 /* Project object */;
 }
