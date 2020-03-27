@@ -24,18 +24,27 @@ final class UserData: ObservableObject {
     @Published var selectedTab: Int = UserDefaults.standard.integer(forKey: "selectedTab") {
         didSet { UserDefaults.standard.set(selectedTab, forKey: "selectedTab") }
     }
+    
+    var schedule: Schedule { Schedule(for: loan) }
 }
 
 func loadLoan() -> Loan {
     guard let loan: Loan = loadJSONFromDocDir("loan.json") else {
-        return Loan(principal: 6_000_000, rate: 7.75 / 100, term: 240, type: .decliningBalance)
+        return Loan(principal: 6_000_000, rate: 7.75, term: 24, type: .decliningBalance)
     }
     return loan
 }
 
 func loadLoans() -> [Loan] {
     guard let loans: [Loan] = loadJSONFromDocDir("loans.json") else {
-        return []
+        return sampleLoans//[]
     }
     return loans
 }
+
+let sampleLoans: [Loan] = [
+    Loan(principal: 26_000_000, rate: 8.25, term: 240, type: .decliningBalance),
+    Loan(principal: 26_000_000, rate: 8.25, term: 24, type: .decliningBalance),
+    Loan(principal: 6_000_000, rate: 7.75, term: 240, type: .decliningBalance),
+    Loan(principal: 6_000_000, rate: 7.75, term: 24, type: .decliningBalance)
+]

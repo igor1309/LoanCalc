@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A1ECEDD242EB03300128888 /* LineChartShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ECEDC242EB03300128888 /* LineChartShape.swift */; };
+		2A1ECEDF242EB10500128888 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ECEDE242EB10500128888 /* LineChart.swift */; };
+		2A1ECEE2242EB2F500128888 /* LineGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ECEE0242EB2F500128888 /* LineGraph.swift */; };
+		2A1ECEE3242EB2F500128888 /* LineGraphShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ECEE1242EB2F500128888 /* LineGraphShape.swift */; };
+		2A1ECEE5242EB44E00128888 /* LineGraphGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ECEE4242EB44E00128888 /* LineGraphGrid.swift */; };
+		2A473435242E972800418D24 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A473434242E972800418D24 /* BarChartView.swift */; };
 		2A660810242E18290056C849 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66080F242E18290056C849 /* AppDelegate.swift */; };
 		2A660812242E18290056C849 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A660811242E18290056C849 /* SceneDelegate.swift */; };
 		2A660814242E18290056C849 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A660813242E18290056C849 /* ContentView.swift */; };
@@ -19,9 +25,20 @@
 		2A66082C242E24450056C849 /* LoanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66082B242E24450056C849 /* LoanView.swift */; };
 		2A66082F242E29510056C849 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66082E242E29510056C849 /* CardView.swift */; };
 		2AA1D4C5242E326A00B51313 /* LoanParameterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1D4C4242E326A00B51313 /* LoanParameterRow.swift */; };
+		2AA1D4C7242E86F200B51313 /* LoanList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1D4C6242E86F200B51313 /* LoanList.swift */; };
+		2ACB9A3C242E8A5A0040F2F9 /* LoanRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACB9A3B242E8A5A0040F2F9 /* LoanRow.swift */; };
+		2ACB9A3E242E8C7F0040F2F9 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACB9A3D242E8C7F0040F2F9 /* Payment.swift */; };
+		2ACB9A40242E8CC50040F2F9 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACB9A3F242E8CC50040F2F9 /* Schedule.swift */; };
+		2ACB9A42242E8E9D0040F2F9 /* PaymentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACB9A41242E8E9D0040F2F9 /* PaymentsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A1ECEDC242EB03300128888 /* LineChartShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartShape.swift; sourceTree = "<group>"; };
+		2A1ECEDE242EB10500128888 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
+		2A1ECEE0242EB2F500128888 /* LineGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraph.swift; sourceTree = "<group>"; };
+		2A1ECEE1242EB2F500128888 /* LineGraphShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphShape.swift; sourceTree = "<group>"; };
+		2A1ECEE4242EB44E00128888 /* LineGraphGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphGrid.swift; sourceTree = "<group>"; };
+		2A473434242E972800418D24 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		2A66080C242E18290056C849 /* LoanCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoanCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A66080F242E18290056C849 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A660811242E18290056C849 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +52,11 @@
 		2A66082B242E24450056C849 /* LoanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanView.swift; sourceTree = "<group>"; };
 		2A66082E242E29510056C849 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		2AA1D4C4242E326A00B51313 /* LoanParameterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanParameterRow.swift; sourceTree = "<group>"; };
+		2AA1D4C6242E86F200B51313 /* LoanList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanList.swift; sourceTree = "<group>"; };
+		2ACB9A3B242E8A5A0040F2F9 /* LoanRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanRow.swift; sourceTree = "<group>"; };
+		2ACB9A3D242E8C7F0040F2F9 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
+		2ACB9A3F242E8CC50040F2F9 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		2ACB9A41242E8E9D0040F2F9 /* PaymentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +71,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A473436242E972D00418D24 /* Bar Chart */ = {
+			isa = PBXGroup;
+			children = (
+				2A473434242E972800418D24 /* BarChartView.swift */,
+				2A1ECEDE242EB10500128888 /* LineChart.swift */,
+				2A1ECEE0242EB2F500128888 /* LineGraph.swift */,
+				2A1ECEE4242EB44E00128888 /* LineGraphGrid.swift */,
+				2A1ECEE1242EB2F500128888 /* LineGraphShape.swift */,
+				2A1ECEDC242EB03300128888 /* LineChartShape.swift */,
+			);
+			path = "Bar Chart";
+			sourceTree = "<group>";
+		};
 		2A660803242E18290056C849 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +107,9 @@
 				2A660811242E18290056C849 /* SceneDelegate.swift */,
 				2A660813242E18290056C849 /* ContentView.swift */,
 				2A66082D242E24500056C849 /* Loan View */,
+				2AA1D4C8242E86F800B51313 /* Loan List */,
+				2A473436242E972D00418D24 /* Bar Chart */,
+				2ACB9A43242E8EA30040F2F9 /* Payments Table */,
 				2A660830242E29560056C849 /* Supporting */,
 				2A660825242E18C80056C849 /* Model & Data */,
 				2A660815242E182A0056C849 /* Assets.xcassets */,
@@ -94,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				2A660823242E18C30056C849 /* Loan.swift */,
+				2ACB9A3D242E8C7F0040F2F9 /* Payment.swift */,
+				2ACB9A3F242E8CC50040F2F9 /* Schedule.swift */,
 				2A660829242E1A8A0056C849 /* UserData.swift */,
 			);
 			path = "Model & Data";
@@ -114,6 +154,23 @@
 				2A66082E242E29510056C849 /* CardView.swift */,
 			);
 			path = Supporting;
+			sourceTree = "<group>";
+		};
+		2AA1D4C8242E86F800B51313 /* Loan List */ = {
+			isa = PBXGroup;
+			children = (
+				2AA1D4C6242E86F200B51313 /* LoanList.swift */,
+				2ACB9A3B242E8A5A0040F2F9 /* LoanRow.swift */,
+			);
+			path = "Loan List";
+			sourceTree = "<group>";
+		};
+		2ACB9A43242E8EA30040F2F9 /* Payments Table */ = {
+			isa = PBXGroup;
+			children = (
+				2ACB9A41242E8E9D0040F2F9 /* PaymentsView.swift */,
+			);
+			path = "Payments Table";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,12 +251,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A66082F242E29510056C849 /* CardView.swift in Sources */,
+				2A1ECEE2242EB2F500128888 /* LineGraph.swift in Sources */,
 				2A660810242E18290056C849 /* AppDelegate.swift in Sources */,
+				2A1ECEE5242EB44E00128888 /* LineGraphGrid.swift in Sources */,
+				2A1ECEDD242EB03300128888 /* LineChartShape.swift in Sources */,
 				2A660812242E18290056C849 /* SceneDelegate.swift in Sources */,
+				2A1ECEDF242EB10500128888 /* LineChart.swift in Sources */,
+				2ACB9A3E242E8C7F0040F2F9 /* Payment.swift in Sources */,
 				2A66082C242E24450056C849 /* LoanView.swift in Sources */,
 				2AA1D4C5242E326A00B51313 /* LoanParameterRow.swift in Sources */,
+				2ACB9A40242E8CC50040F2F9 /* Schedule.swift in Sources */,
+				2ACB9A42242E8E9D0040F2F9 /* PaymentsView.swift in Sources */,
+				2AA1D4C7242E86F200B51313 /* LoanList.swift in Sources */,
 				2A660814242E18290056C849 /* ContentView.swift in Sources */,
 				2A660824242E18C30056C849 /* Loan.swift in Sources */,
+				2A473435242E972800418D24 /* BarChartView.swift in Sources */,
+				2ACB9A3C242E8A5A0040F2F9 /* LoanRow.swift in Sources */,
+				2A1ECEE3242EB2F500128888 /* LineGraphShape.swift in Sources */,
 				2A66082A242E1A8A0056C849 /* UserData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

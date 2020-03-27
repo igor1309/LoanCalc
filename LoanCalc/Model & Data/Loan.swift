@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Loan: Identifiable, Codable {
+struct Loan: Identifiable, Codable, Hashable {
     
     mutating func increase(param: LoanParameter) {
         switch param {
@@ -19,7 +19,7 @@ struct Loan: Identifiable, Codable {
         case .rate:
             //  MARK: FINISH THIS
             //  ПРОВЕРКА НА БОЛЬШИЕ ЗНАЧЕНИЯ
-            rate += 5 / 100 / 100
+            rate += 5 / 100
         case .term:
             //  MARK: FINISH THIS
             //  ПРОВЕРКА НА ОТРИЦАТЕЛЬНЫЕ ЗНАЧЕНИЯ
@@ -36,7 +36,7 @@ struct Loan: Identifiable, Codable {
         case .rate:
             //  MARK: FINISH THIS
             //  ПРОВЕРКА НА БОЛЬШИЕ ЗНАЧЕНИЯ
-            rate -= 5 / 100 / 100
+            rate -= 5 / 100
         case .term:
             //  MARK: FINISH THIS
             //  ПРОВЕРКА НА ОТРИЦАТЕЛЬНЫЕ ЗНАЧЕНИЯ
@@ -63,7 +63,7 @@ struct Loan: Identifiable, Codable {
     var type: InterestType
     
     var principalStr: String { principal.formattedGrouped }
-    var rateStr: String { rate.formattedPercentageWithDecimals }
+    var rateStr: String { (rate / 100).formattedPercentageWithDecimals }
     var termStr: String { term.formattedGrouped }
     /// срок кредита в годах
     var termInYearsStr: String { (term / 12).formattedGroupedWith1Decimal }
@@ -82,7 +82,7 @@ struct Loan: Identifiable, Codable {
     private let minPrincipal = 10_000.0
     
     /// сумма кредита
-    private var principal: Double {
+    fileprivate var principal: Double {
         didSet {
             /// контроль границ диапазона суммы кредита
             if principal > maxPrincipal {
@@ -96,10 +96,10 @@ struct Loan: Identifiable, Codable {
     }
     
     /// годовая процентная ставка
-    private var rate: Double
+    fileprivate var rate: Double
     
     /// срок кредита в месяцах
-    private var term: Double
+    fileprivate var term: Double
     
     /// размер ежемесячного платежа
     private var monthlyPayment: Double {
@@ -140,6 +140,46 @@ struct Loan: Identifiable, Codable {
             return mp * term
         case .fixedFlat:
             return principal * (1 + r * term)
+        }
+    }
+}
+
+
+extension Schedule {
+    init(for loan: Loan) {
+        // using: loan.principal loan.rate loan.term loan.type: InterestType
+        // http://financeformulas.net/Annuity_Payment_Formula.html
+        // http://www.thecalculatorsite.com/finance/calculators/loancalculator.php
+        // https://brownmath.com/bsci/loan.htm
+        
+        payments = []
+        
+        let r = loan.rate / 100 / 12    // monthly interest rate
+        var payment = Payment()
+        
+        switch loan.type {
+        case .decliningBalance:     // аннуитет w/fixed monthly payment
+            let mp = loan.principal /
+                ((1 - pow(1 + r, Double(0 - loan.term))) / r)
+            payment.monthlyPayment = mp
+            
+            for i in 1...Int(loan.term) {
+                payment.beginningBalance =
+                    loan.principal * pow(1 + r, Double (i - 1)) -
+                    mp / r * (pow(1 + r, Double (i - 1)) - 1)
+                payment.endingBalance =
+                    loan.principal * pow(1 + r, Double (i)) -
+                    mp / r * (pow(1 + r, Double (i)) - 1)
+                payment.principal =
+                    payment.beginningBalance - payment.endingBalance
+                payment.interest =
+                    mp - payment.principal
+                
+                payments.append(payment)
+            }
+        case .fixedFlat:
+            //FIXME: допилить таблицу для выплаты в конце срока??
+            payment.monthlyPayment = loan.principal * r
         }
     }
 }

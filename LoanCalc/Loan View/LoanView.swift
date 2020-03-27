@@ -35,26 +35,24 @@ struct LoanView: View {
             VStack(alignment: .leading) {
                 CardView(backgroundColor: .secondarySystemBackground, cornerRadius: 16) {
                     VStack(spacing: 16) {
-                        HStack(alignment: .custom) {
+                        ZStack(alignment: .topTrailing) {
                             VStack(spacing: 0) {
                                 Text(userData.loan.monthlyPaymentStr)
                                     .font(.largeTitle)
-                                    .alignmentGuide(.custom) { d in d[VerticalAlignment.top] }
-                                
+                                        
                                 Text("ежемесячный платеж".uppercased())
                                     .font(.footnote)
                             }
                             .foregroundColor(.systemOrange)
                             .frame(maxWidth: .infinity)
                             
-                            Spacer()
-                            
                             Button(action: toggleFavorite) {
                                 Image(systemName: isFavorite ? "star.fill" : "star")
                                     .foregroundColor(.systemOrange)
+                                    .opacity(isFavorite ? 1 : 0.5)
 //                                    .imageScale(.large)
                             }
-                            .alignmentGuide(.custom) { d in d[VerticalAlignment.top] }
+                            .offset(y: 6)
                         }
                         
                         VStack(spacing: 6) {
@@ -112,6 +110,14 @@ struct LoanView: View {
                     }
                 }
                 .padding()
+                
+//                if userData.loan.type == .decliningBalance {
+//                    CardView {
+//                        BarChartView()
+//                            .frame(height: 260)
+//                    }
+//                    .padding()
+//                }
                 
                 Spacer()
             }

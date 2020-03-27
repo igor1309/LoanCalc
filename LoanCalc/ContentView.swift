@@ -21,24 +21,24 @@ struct ContentView: View {
             }
             .tag(0)
             
-            Text("Chart")
+            LineChart()
                 .tabItem {
                     Image(systemName: "chart.bar")
                     Text("Chart")
             }
             .tag(1)
             
-            Text("Saved")
+            PaymentsView()
                 .tabItem {
-                    Image(systemName: "star")
-                    Text("Saved")
+                    Image(systemName: "table")
+                    Text("Table")
             }
             .tag(2)
             
-            Text("3")
+            LoanList()
                 .tabItem {
-                    Image(systemName: "3.circle")
-                    Text("3")
+                    Image(systemName: "star")
+                    Text("Saved")
             }
             .tag(3)
             
