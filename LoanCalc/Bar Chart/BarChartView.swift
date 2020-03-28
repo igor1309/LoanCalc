@@ -17,34 +17,38 @@ struct BarChartView: View {
     
     var body: some View {
         let max = payments.map { $0.monthlyPayment }.max() ?? 1
-        let steps = CGFloat(payments.count + 0) * 2
+        let steps = CGFloat(payments.count + 0) * 1.2
         
         return HStack {
             if payments.isNotEmpty {
                 GeometryReader { geo in
-                    ZStack(alignment: .top) {
-                        Text(self.selectedPayment == nil ? " " : "month #\(self.selectedPayment!.formattedGrouped)")
-                        
-                        HStack {
-                            ForEach(self.payments.indices) { index in
-                                VStack(spacing: 0) {
-                                    Rectangle()
-//                                    RoundedRectangle(cornerRadius: 2, style: .continuous)
-                                        .fill(Color.blue)
-                                        .frame(width: geo.size.width / steps,
-                                            height: geo.size.height * CGFloat(self.payments[index].interest / max))
-                                    
-                                            Rectangle()
-//                                    RoundedRectangle(cornerRadius: 2, style: .continuous)
-                                        .fill(Color.systemTeal)
-                                        .frame(width: geo.size.width / steps,
-                                            height: geo.size.height * CGFloat(self.payments[index].principal / max))
-                                }
-                                .onTapGesture {
-                                    self.selectedPayment = index + 1
+                    ZStack(alignment: .bottom) {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(self.payments.indices) { index in
+                                    VStack(spacing: 0) {
+                                        Rectangle()
+    //                                    RoundedRectangle(cornerRadius: 2, style: .continuous)
+                                            .fill(Color.blue)
+                                            .frame(width: geo.size.width / steps,
+                                                height: geo.size.height * CGFloat(self.payments[index].interest / max))
+                                        
+                                                Rectangle()
+    //                                    RoundedRectangle(cornerRadius: 2, style: .continuous)
+                                            .fill(Color.systemTeal)
+                                            .frame(width: geo.size.width / steps,
+                                                height: geo.size.height * CGFloat(self.payments[index].principal / max))
+                                    }
+                                    .onTapGesture {
+                                        self.selectedPayment = index + 1
+                                    }
                                 }
                             }
                         }
+                        
+                        Text(self.selectedPayment == nil ? "" : "month #\(self.selectedPayment!.formattedGrouped)")
+                        .padding(6)
+                            .background(Color.tertiarySystemBackground)
                     }
                 }
             } else {
